@@ -1,17 +1,15 @@
-petrovich
-=========
-
-RUS
+## RUS
 
 Портированная версия https://github.com/rocsci/petrovich с ruby на php
 
-Установка
+#Установка
 
 Установить php-yum http://www.php.net/manual/ru/yaml.installation.php
 Загрузить папку petrovich на сервер.
 
-Использование
+#Использование
 
+```php
 require_once('petrovich/Petrovich.php');
 
 use petrovich\Petrovich;
@@ -23,5 +21,6 @@ echo '<br /><strong>Дательный (Кому? Чему?):</strong><br />';
 echo $petrovich->firstname($fio[1],Petrovich::CASE_GENITIVE).'<br />';
 echo $petrovich->middlename($fio[2],Petrovich::CASE_GENITIVE).'<br />';
 echo $petrovich->lastname($fio[0],Petrovich::CASE_GENITIVE).'<br />';
+```
 
 Лицензия MIT
