@@ -91,9 +91,9 @@ use petrovich\Petrovich;
 
 $petrovich = new Petrovich();
 
-$petrovich->firstname('Баженов',Petrovich::CASE_GENITIVE);
-$petrovich->lastname('Михаил',Petrovich::CASE_GENITIVE);
-$petrovich->middlename('Александрович',Petrovich::CASE_GENITIVE);
+$petrovich->firstname('<?php $fio[1] ?>',Petrovich::CASE_GENITIVE);
+$petrovich->lastname('<?php $fio[0] ?>',Petrovich::CASE_GENITIVE);
+$petrovich->middlename('<?php $fio[2] ?>',Petrovich::CASE_GENITIVE);
                 </pre>
             </div>
         </div>
