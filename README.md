@@ -4,7 +4,7 @@
 
 #Установка
 
-Установить php-yum http://www.php.net/manual/ru/yaml.installation.php
+Установить php-yaml http://www.php.net/manual/ru/yaml.installation.php
 Загрузить папку petrovich на сервер.
 
 #Использование
