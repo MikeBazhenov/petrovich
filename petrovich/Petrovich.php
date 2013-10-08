@@ -25,7 +25,7 @@ class Petrovich {
      */
     function __construct() {
 
-        $rules_path = __DIR__.'/petrovich/rules.yml';
+        $rules_path = __DIR__.'/rules.yml';
 
         $yaml_resourse = fopen($rules_path, 'r');
 
