@@ -3,7 +3,7 @@
     use petrovich\Petrovich;
 
     $petrovich = new Petrovich();
-    if(isset($_REQUEST['fio']))
+    if(!empty($_REQUEST['fio']))
         $fio = explode(' ',$_REQUEST['fio']);
     else {
         $fio[] = 'Баженов';
