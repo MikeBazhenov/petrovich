@@ -5,6 +5,9 @@
 
 Портированная версия https://github.com/rocsci/petrovich с ruby на php
 
+#Пример
+http://iguffi.ru/petrovich/
+
 #Установка
 
 Загрузить папку petrovich на сервер.
