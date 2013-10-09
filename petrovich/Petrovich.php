@@ -136,6 +136,8 @@ class Petrovich {
 
                     return $this->applyRule($rule->mods,$name,$case);
                 }
+                else
+                    return $name;
             }
         }
     }
