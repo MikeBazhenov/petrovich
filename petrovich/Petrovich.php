@@ -25,18 +25,18 @@ class Petrovich {
      */
     function __construct() {
 
-        $rules_path = __DIR__.'/rules.yml';
+        $rules_path = __DIR__.'/rules.js';
 
-        $yaml_resourse = fopen($rules_path, 'r');
+        $rules_resourse = fopen($rules_path, 'r');
 
-        if($yaml_resourse == false)
+        if($rules_resourse == false)
             throw new ErrorException('Rules file not found.');
 
-        $yaml = fread($yaml_resourse,filesize($rules_path));
+        $rules_array = fread($rules_resourse,filesize($rules_path));
 
-        fclose($yaml_resourse);
+        fclose($rules_resourse);
 
-        $this->rules = yaml_parse($yaml);
+        $this->rules = get_object_vars(json_decode($rules_array));
     }
 
     /**
@@ -124,17 +124,17 @@ class Petrovich {
      * @return string
      */
     private function findInRules($name,$case,$type) {
-        foreach($this->rules[$type]['suffixes'] as $rule) {
-            foreach($rule['test'] as $last_char) {
+        foreach($this->rules[$type]->suffixes as $rule) {
+            foreach($rule->test as $last_char) {
                 $last_name_char = substr($name,strlen($name)-strlen($last_char),strlen($last_char));
                 if($last_char == $last_name_char) {
-                    if($rule['mods'][$case] == '.')
+                    if($rule->mods[$case] == '.')
                         continue;
 
                     if($this->gender == 'androgynous' || $this->gender == null)
-                        $this->gender = $rule['gender'];
+                        $this->gender = $rule->gender;
 
-                    return $this->applyRule($rule['mods'],$name,$case);
+                    return $this->applyRule($rule->mods,$name,$case);
                 }
             }
         }
@@ -149,13 +149,14 @@ class Petrovich {
      * @return bool|string
      */
     private function checkException($name,$case,$type) {
-        if(!isset($this->rules[$type]['exceptions']))
+        if(!isset($this->rules[$type]->exceptions))
             return false;
+
         $lower_name = strtolower($name);
 
-        foreach($this->rules[$type]['exceptions'] as $rule) {
-            if(array_search($lower_name,$rule['test']) !== false) {
-                return $this->applyRule($rule['mods'],$name,$case);
+        foreach($this->rules[$type]->exceptions as $rule) {
+            if(array_search($lower_name,$rule->test) !== false) {
+                return $this->applyRule($rule->mods,$name,$case);
             }
         }
         return false;

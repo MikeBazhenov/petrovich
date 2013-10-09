@@ -33,7 +33,7 @@
             <ul class="nav nav-pills pull-right">
                 <li class="active"><a href="/">Главная</a></li>
                 <li><a href="https://github.com/rocsci/petrovich">Petrovich на Ruby</a></li>
-                <li><a href="https://github.com/iGuffi/petrovich">Petrovich на PHP</a></li>
+                <li><a href="https://github.com/MikeBazhenov/petrovich">Petrovich на PHP</a></li>
             </ul>
             <h3 class="text-muted">Petrovich на PHP</h3>
         </div>
@@ -41,7 +41,7 @@
         <div class="jumbotron">
             <h1><img src="image/petrovich.png"/></h1>
             <p class="lead">Склонение падежей русских имён, фамилий и отчеств. Вы задаёте начальное имя в именительном падеже, а получаете в нужном вам.</p>
-            <p><a class="btn btn-lg btn-success" href="https://github.com/iGuffi/petrovich" target="_blank">Смотреть на Github</a></p>
+            <p><a class="btn btn-lg btn-success" href="https://github.com/MikeBazhenov/petrovich" target="_blank">Смотреть на Github</a></p>
         </div>
 
         <div class="row marketing">
@@ -79,7 +79,6 @@
                     <p><?php echo $petrovich->lastname($fio[0],Petrovich::CASE_PREPOSITIONAL); ?></p>
 
                     <h4>Установка</h4>
-                    <p>Установить <a href="http://www.php.net/manual/ru/yaml.installation.php">php-yaml</a></p>
                     <p>Загрузить папку petrovich на сервер.</p>
                 </div>
             </div>
