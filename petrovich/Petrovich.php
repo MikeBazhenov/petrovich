@@ -172,7 +172,7 @@ class Petrovich {
      * @return string
      */
     private function applyRule($mods,$name,$case) {
-        $result = substr($name,0,strlen($name)-substr_count($mods[$case],'-'));
+        $result = substr($name,0,strlen($name)-substr_count($mods[$case],'-')-1);
         $result .= str_replace('-','',$mods[$case]);
         return $result;
     }
