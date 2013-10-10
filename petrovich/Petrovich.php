@@ -8,8 +8,8 @@ class Petrovich {
 
     private $rules; //Правила
 
-    const CASE_DATIVE = 0; //родительный
-    const CASE_GENITIVE = 1; //дательный
+    const CASE_GENITIVE = 0; //родительный
+    const CASE_DATIVE = 1; //дательный
     const CASE_ACCUSATIVE = 2; //винительный
     const CASE_INSTRUMENTAL = 3; //творительный
     const CASE_PREPOSITIONAL = 4; //предложный
