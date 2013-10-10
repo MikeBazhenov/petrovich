@@ -14,6 +14,10 @@ class Petrovich {
     const CASE_INSTRUMENTAL = 3; //творительный
     const CASE_PREPOSITIONAL = 4; //предложный
 
+    const GEN_ANDROGYNOUS = 0; // Пол не определен
+    const GEN_MALE = 1; // Мужской
+    const GEN_FEMALE = 2; // Женский
+
     private $middlename; //Шарыпов
     private $firstname; //Пётр
     private $lastname; //Александрович
@@ -184,11 +188,11 @@ class Petrovich {
     public function getGender() {
         switch($this->gender) {
             case 'male':
-                return 'мужской';
+                return $this::GEN_MALE;
             case 'female':
-                return 'женский';
+                return $this::GEN_FEMALE;
             case 'androgynous':
-                return 'не определён';
+                return $this::GEN_ANDROGYNOUS;
         }
     }
 }
