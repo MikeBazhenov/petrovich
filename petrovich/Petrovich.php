@@ -138,6 +138,7 @@ class Petrovich {
                 }
             }
         }
+        return $name;
     }
 
     /**
