@@ -183,7 +183,7 @@ class Petrovich {
 
     /**
      * Возвращает пол который возможно был определён при поиске в правилах
-     * @return string
+     * @return int
      */
     public function getGender() {
         switch($this->gender) {
