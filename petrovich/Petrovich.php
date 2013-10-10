@@ -6,22 +6,22 @@ use ErrorException;
 
 class Petrovich {
 
-    private $rules; //Правила
-
     const CASE_DATIVE = 0; //родительный
     const CASE_GENITIVE = 1; //дательный
     const CASE_ACCUSATIVE = 2; //винительный
     const CASE_INSTRUMENTAL = 3; //творительный
     const CASE_PREPOSITIONAL = 4; //предложный
+	
+    private $_rules; //Правила
 
-    private $middlename; //Шарыпов
-    private $firstname; //Пётр
-    private $lastname; //Александрович
-    private $gender; //Пол male/мужской female/женский
+    private $_lastname; //Шарыпов
+    private $_firstname; //Пётр
+    private $_middlename; //Александрович
+    private $_gender; //Пол male/мужской female/женски
 
     /**
      * Конструтор класса Петрович
-     * загружаем правила из файла rules.yml
+     * загружаем правила из файла rules.js
      */
     function __construct() {
 
@@ -36,7 +36,7 @@ class Petrovich {
 
         fclose($rules_resourse);
 
-        $this->rules = get_object_vars(json_decode($rules_array));
+        $this->_rules = get_object_vars(json_decode($rules_array));
     }
 
     /**
@@ -51,8 +51,8 @@ class Petrovich {
         if(empty($firstname))
             throw new ErrorException('Firstname cannot be empty.');
 
-        $this->firstname = $firstname;
-        return $this->inflect($this->firstname,$case,__FUNCTION__);
+        $this->_firstname = $firstname;
+        return $this->inflect($this->_firstname,$case,__FUNCTION__);
     }
 
     /**
@@ -67,8 +67,8 @@ class Petrovich {
         if(empty($middlename))
             throw new ErrorException('Middlename cannot be empty.');
 
-        $this->middlename = $middlename;
-        return $this->inflect($this->middlename,$case,__FUNCTION__);
+        $this->_middlename = $middlename;
+        return $this->inflect($this->_middlename,$case,__FUNCTION__);
     }
 
     /**
@@ -83,8 +83,8 @@ class Petrovich {
         if(empty($lastname))
             throw new ErrorException('Lastname cannot be empty.');
 
-        $this->lastname = $lastname;
-        return $this->inflect($this->lastname,$case,__FUNCTION__);
+        $this->_lastname = $lastname;
+        return $this->inflect($this->_lastname,$case,__FUNCTION__);
     }
 
     /**
@@ -124,15 +124,15 @@ class Petrovich {
      * @return string
      */
     private function findInRules($name,$case,$type) {
-        foreach($this->rules[$type]->suffixes as $rule) {
+        foreach($this->_rules[$type]->suffixes as $rule) {
             foreach($rule->test as $last_char) {
                 $last_name_char = substr($name,strlen($name)-strlen($last_char),strlen($last_char));
                 if($last_char == $last_name_char) {
                     if($rule->mods[$case] == '.')
                         continue;
 
-                    if($this->gender == 'androgynous' || $this->gender == null)
-                        $this->gender = $rule->gender;
+                    if($this->_gender == 'androgynous' || $this->gender == null)
+                        $this->_gender = $rule->gender;
 
                     return $this->applyRule($rule->mods,$name,$case);
                 }
@@ -150,12 +150,12 @@ class Petrovich {
      * @return bool|string
      */
     private function checkException($name,$case,$type) {
-        if(!isset($this->rules[$type]->exceptions))
+        if(!isset($this->_rules[$type]->exceptions))
             return false;
 
         $lower_name = strtolower($name);
 
-        foreach($this->rules[$type]->exceptions as $rule) {
+        foreach($this->_rules[$type]->exceptions as $rule) {
             if(array_search($lower_name,$rule->test) !== false) {
                 return $this->applyRule($rule->mods,$name,$case);
             }
@@ -182,7 +182,7 @@ class Petrovich {
      * @return string
      */
     public function getGender() {
-        switch($this->gender) {
+        switch($this->_gender) {
             case 'male':
                 return 'мужской';
             case 'female':
