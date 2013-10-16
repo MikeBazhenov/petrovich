@@ -8,8 +8,8 @@ class Petrovich {
 
     private $rules; //Правила
 
-    const CASE_GENITIVE = 0; //родительный
-    const CASE_DATIVE = 1; //дательный
+    const CASE_DATIVE = 0; //родительный
+    const CASE_GENITIVE = 1; //дательный
     const CASE_ACCUSATIVE = 2; //винительный
     const CASE_INSTRUMENTAL = 3; //творительный
     const CASE_PREPOSITIONAL = 4; //предложный
@@ -126,7 +126,7 @@ class Petrovich {
     private function findInRules($name,$case,$type) {
         foreach($this->rules[$type]->suffixes as $rule) {
             foreach($rule->test as $last_char) {
-                $last_name_char = substr($name,strlen($name)-strlen($last_char),strlen($last_char));
+                $last_name_char = mb_substr($name,strlen($name)-strlen($last_char),strlen($last_char));
                 if($last_char == $last_name_char) {
                     if($rule->mods[$case] == '.')
                         continue;
@@ -172,7 +172,7 @@ class Petrovich {
      * @return string
      */
     private function applyRule($mods,$name,$case) {
-        $result = substr($name,0,strlen($name)-substr_count($mods[$case],'-'));
+        $result = mb_substr($name,0,strlen($name)-substr_count($mods[$case],'-'));
         $result .= str_replace('-','',$mods[$case]);
         return $result;
     }
